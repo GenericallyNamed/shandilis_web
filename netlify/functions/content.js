@@ -27,6 +27,8 @@ const queryDatabase = async (db) => {
         headers: {
             "Content-Type": "application/json",
         },
+        console.log("contents of CONTENT");
+        console.log(content);
         body: JSON.stringify(content),
     };
 };
