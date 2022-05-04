@@ -5,7 +5,7 @@ const DB_NAME = 'WEBSITE';
 
 let cachedDb = null;
 
-const connectToDatabase = async () => {
+const connectToDatabase = async (uri) => {
     if(cachedDb) return cachedDb;
 
     const client = await MongoClient.connect(uri, {
@@ -29,7 +29,7 @@ const queryDatabase = async (db) => {
 
 module.exports.handler = async(event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
-
+    // console.log("MONGODB_URI = " + MONGODB_URI);
     const db = await connectToDatabase(MONGODB_URI);
     return queryDatabase(db);
 };
