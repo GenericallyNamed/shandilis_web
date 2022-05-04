@@ -13,6 +13,7 @@ const connectToDatabase = async (uri) => {
     });
 
     cachedDb = client.db(DB_NAME);
+    // cachedDb = client.db(DB_NAME);
     console.log("NOTE OUTPUT HERE");
     console.log(cachedDb);
     console.log("returning...");
@@ -22,6 +23,8 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db) => {
     console.log("creating content object . . .");
     const content = await db.collection("content").find({}).toArray();
+    console.log("content collection::");
+    console.log(db.collection("content"));
     console.log("content object created");
     console.log("contents of CONTENT");
     console.log(content);
