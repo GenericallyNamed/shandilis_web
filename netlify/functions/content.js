@@ -15,20 +15,21 @@ const connectToDatabase = async (uri) => {
     cachedDb = client.db(DB_NAME);
     console.log("NOTE OUTPUT HERE");
     console.log(cachedDb);
-
+    console.log("returning...");
     return cachedDb;
 };
 
 const queryDatabase = async (db) => {
+    console.log("creating content object . . .");
     const content = await db.collection("content").find({}).toArray();
-  
+    console.log("content object created");
+    console.log("contents of CONTENT");
+    console.log(content);
     return {
         statusCode: 200,
         headers: {
             "Content-Type": "application/json",
         },
-        console.log("contents of CONTENT");
-        console.log(content);
         body: JSON.stringify(content),
     };
 };
@@ -37,5 +38,7 @@ module.exports.handler = async(event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
     // console.log("MONGODB_URI = " + MONGODB_URI);
     const db = await connectToDatabase(MONGODB_URI);
+    console.log("connected to DB");
+    console.log("QUERYING...");
     return queryDatabase(db);
 };
