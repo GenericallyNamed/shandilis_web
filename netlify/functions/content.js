@@ -12,6 +12,10 @@ const connectToDatabase = async (uri) => {
         useUnifiedTopology: true,
     });
 
+    cachedDb = client.db(DB_NAME);
+    console.log("NOTE OUTPUT HERE");
+    console.log(cachedDb);
+
     return cachedDb;
 };
 
