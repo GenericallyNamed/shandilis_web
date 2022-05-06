@@ -24,7 +24,7 @@ type Content = {
     tags: string[]
 }
 
-var tagsAggregate: Map<string, number> = new Map();
+var tagsAggregate = new Map();
 
 var chipletStore: Chiplet[] = [];
 var cardStore: Card[] = [];
