@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import landing from '../styles/landing.module.css'
+import Script from 'next/script'
 
 const Home: NextPage = () => {
   return (
@@ -12,13 +13,18 @@ const Home: NextPage = () => {
         <meta name="description" content="alex's personal portfolio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Script id="set-export">
+        {`var exports = {}; console.log("testy test")`}
+      </Script>
+      <Script src="js/simple.js"/>
+      <Script src="js/map.js"/>
+      <Script src="js/main.js"/>
       <main className={styles.main}>
         <h1 className={landing.header}>Alex Shandilis</h1>
         <h2 className={landing.subheader}>maker of things</h2>
 
         <div id={"portfolio-container"}>
-          <div className={landing.chip_container}>
+          <div className={landing.chip_container} id="chiplet-container">
             <a className={landing.chiplets}>
               JavaScript
             </a>
@@ -56,7 +62,7 @@ const Home: NextPage = () => {
               Demos
             </a>
           </div>
-          <div className={landing.content_container}>
+          <div className={landing.content_container} id="card-container">
             <a className={landing.cards}>
               <img className={landing.card_thumbnail} src={"city.jpg"}></img>
               <div className={landing.card_title}>
