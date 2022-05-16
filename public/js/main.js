@@ -44,7 +44,7 @@ var contentStore = [];
 console.log("stage 1");
 function getContent() {
     return __awaiter(this, void 0, void 0, function () {
-        var a, b, item, content;
+        var a, b, i, content;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -58,15 +58,24 @@ function getContent() {
                     b = _a.sent();
                     console.log(b);
                     console.log("testy fart 2");
-                    for (item in b) {
+                    for (i = 0; i < b.length; i++) {
                         content = {
-                            name: b.name,
-                            img: b.img,
-                            tags: b.tags
+                            name: b[i].name,
+                            img: b[i].img,
+                            tags: b[i].tags
                         };
                         contentStore.push(content);
                     }
+                    // for(var item in b) {
+                    //     let content: Content = {
+                    //         name: item.name,
+                    //         img: item.img,
+                    //         tags: item.tags
+                    //     };
+                    //     contentStore.push(content);
+                    // }
                     console.log(contentStore);
+                    console.log("test!!! BRUH");
                     getTags();
                     render();
                     return [2 /*return*/];

@@ -39,15 +39,24 @@ async function getContent() {
     var b = await a.json();
     console.log(b);
     console.log("testy fart 2");
-    for(var item in b) {
+    for(var i = 0; i < b.length; i++) {
         let content: Content = {
-            name: b.name,
-            img: b.img,
-            tags: b.tags
-        };
+            name: b[i].name,
+            img: b[i].img,
+            tags: b[i].tags
+        }
         contentStore.push(content);
     }
+    // for(var item in b) {
+    //     let content: Content = {
+    //         name: item.name,
+    //         img: item.img,
+    //         tags: item.tags
+    //     };
+    //     contentStore.push(content);
+    // }
     console.log(contentStore);
+    console.log("test!!! BRUH");
     getTags();
     render();
 }
