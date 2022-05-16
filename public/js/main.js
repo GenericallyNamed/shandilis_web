@@ -66,14 +66,6 @@ function getContent() {
                         };
                         contentStore.push(content);
                     }
-                    // for(var item in b) {
-                    //     let content: Content = {
-                    //         name: item.name,
-                    //         img: item.img,
-                    //         tags: item.tags
-                    //     };
-                    //     contentStore.push(content);
-                    // }
                     console.log(contentStore);
                     console.log("test!!! BRUH");
                     getTags();
@@ -85,8 +77,8 @@ function getContent() {
 }
 var cardContainer = document.getElementById("card-container"), chipletContainer = document.getElementById("chiplet-container");
 var processor = {
-    chip: function (c) {
-        return '<a className={landing.chiplets}>' + c.name + '</a>';
+    chip: function (name) {
+        return '<a className={landing.chiplets}>' + name + '</a>';
     },
     card: function (c) {
         return '<a className={landing.cards}><img className={landing.card_thumbnail} src={"' + c.img + '"}></img><div className={landing.card_title}>' + c.title + '</div></a>';
@@ -110,15 +102,14 @@ function getTags() {
     tagsAggregate = new Map();
     for (var i = 0; i < contentStore.length; i++) {
         for (var tag in contentStore[i].tags) {
-            if (typeof tagsAggregate.get(tag) == 'undefined') {
+            if (typeof tagsAggregate.get(tag) == 'undefined')
                 return;
-            }
-            if (tagsAggregate.get(tag) === undefined) {
+            if (tagsAggregate.get(tag) === undefined)
                 return;
-            }
-            if (tagsAggregate === undefined) {
+            if (tagsAggregate === undefined)
                 break;
-            }
+            if (tagsAggregate.size == 0)
+                break;
             console.log("BOOB!!! TEST LOL");
             if (tagsAggregate.get(tag) >= 1) {
                 tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
@@ -130,6 +121,30 @@ function getTags() {
     }
 }
 function render() {
+    clear();
+    var tags = "";
+    tagsAggregate.forEach(function (value, key) {
+        tags = tags + processor.chip(key);
+    });
+    var content = "";
+    for (var i = 0; i < contentStore.length; i++) {
+        var card = {
+            title: contentStore[i].name,
+            img: contentStore[i].img
+        };
+    }
+    // for(var a of tagsAggregate) {
+    //     tags = tags + processor.chip(a[0])
+    // }
+    // for(var i: number = 0; i < tagsAggregate.size; i++) {
+    //     tags = tags + processor.chip(tagsAggregate);
+    // }
+}
+function clear() {
+    if (cardContainer != null)
+        cardContainer.innerHTML = "";
+    if (chipletContainer != null)
+        chipletContainer.innerHTML = "";
 }
 console.log("stage 2");
 getContent();
