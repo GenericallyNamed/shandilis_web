@@ -1,5 +1,6 @@
 export {}
 
+
 console.log("test! just want to know if this runs! :)");
 
 // types:
@@ -54,7 +55,17 @@ async function getContent() {
 }
 
 var cardContainer = document.getElementById("card-container"), chipletContainer = document.getElementById("chiplet-container");
+if(cardContainer != undefined) {
+        cardContainer.set = function(content: string) {
+            if(cardContainer != undefined) cardContainer.innerHTML = content;
+        }
+}
 
+if(chipletContainer != undefined) {
+    chipletContainer.set = function(content: string) {
+        if(cardContainer != undefined) chipletContainer.innerHTML = content;
+    }
+}
 var processor = {
     chip: function(name: string) {
         return '<a className={landing.chiplets}>' + name + '</a>';
@@ -110,7 +121,13 @@ function render() {
             title: contentStore[i].name,
             img: contentStore[i].img
         };
+        content = content + processor.card(card);
     }
+
+    chipletContainer?.set(content);
+    cardContainer?.set(content);
+
+
     // for(var a of tagsAggregate) {
     //     tags = tags + processor.chip(a[0])
     // }

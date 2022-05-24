@@ -76,6 +76,18 @@ function getContent() {
     });
 }
 var cardContainer = document.getElementById("card-container"), chipletContainer = document.getElementById("chiplet-container");
+if (cardContainer != undefined) {
+    cardContainer.set = function (content) {
+        if (cardContainer != undefined)
+            cardContainer.innerHTML = content;
+    };
+}
+if (chipletContainer != undefined) {
+    chipletContainer.set = function (content) {
+        if (cardContainer != undefined)
+            chipletContainer.innerHTML = content;
+    };
+}
 var processor = {
     chip: function (name) {
         return '<a className={landing.chiplets}>' + name + '</a>';
@@ -132,7 +144,10 @@ function render() {
             title: contentStore[i].name,
             img: contentStore[i].img
         };
+        content = content + processor.card(card);
     }
+    chipletContainer === null || chipletContainer === void 0 ? void 0 : chipletContainer.set(content);
+    cardContainer === null || cardContainer === void 0 ? void 0 : cardContainer.set(content);
     // for(var a of tagsAggregate) {
     //     tags = tags + processor.chip(a[0])
     // }
