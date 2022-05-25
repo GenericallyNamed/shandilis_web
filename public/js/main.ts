@@ -25,10 +25,10 @@ type Content = {
     tags: string[]
 }
 
-var tagsAggregate = new Map<string, number>();
+// var tagsAggregate = new Map<string, number>();
 
-var chipletStore: Chiplet[] = [];
-var cardStore: Card[] = [];
+// var chipletStore: Chiplet[] = [];
+// var cardStore: Card[] = [];
 var contentStore: Content[] = [];
 
 console.log("stage 1");
@@ -54,11 +54,11 @@ async function getContent() {
     render();
 }
 
-var cardContainer = document.getElementById("card-container"), chipletContainer = document.getElementById("chiplet-container");
+var cardContainer: any = document.getElementById("card-container"), chipletContainer: any = document.getElementById("chiplet-container");
 if(cardContainer != undefined) {
-        cardContainer.set = function(content: string) {
-            if(cardContainer != undefined) cardContainer.innerHTML = content;
-        }
+    cardContainer.set = function(content: string) {
+        if(cardContainer != undefined) cardContainer.innerHTML = content;
+    }
 }
 
 if(chipletContainer != undefined) {
@@ -79,32 +79,43 @@ function render_cards(content: string) {
     if(cardContainer != null) cardContainer.innerHTML = content;
 }
 
-function render_chips(chips: string) {
-    if(chipletContainer != null) chipletContainer.innerHTML = chips;
-}
+// function render_chips(chips: string) {
+//     if(chipletContainer != null) chipletContainer.innerHTML = chips;
+// }
 
 // MAIN CODE
 
 
+var tagsAggregate : Map<any, any> | undefined | null = new Map<string, number>();
 function getTags() {
+    tagsAggregate = new Map<string, number>();
     if(tagsAggregate == null || tagsAggregate == undefined) {
         return;
     }
     // var tag_map = new Map();
-    var count: number = 0;
-    tagsAggregate = new Map<string, number>();
+    // var count: number = 0;
     for(var i = 0; i < contentStore.length; i++) {
         for(var tag in contentStore[i].tags) {
-            if(typeof tagsAggregate.get(tag) == 'undefined') return;
-            if(tagsAggregate.get(tag) === undefined) return;
-            if(tagsAggregate === undefined) break;
-            if(tagsAggregate.size == 0) break;
-            console.log("BOOB!!! TEST LOL");
             if(tagsAggregate.get(tag) >= 1) {
                 tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
             } else {
                 tagsAggregate.set(tag, 1);
             }
+            // if(typeof tagsAggregate.get(tag) == 'undefined') return;
+            // if(tagsAggregate["get"](tag) === undefined) return;
+            // if(tagsAggregate === undefined) break;
+            // if(tagsAggregate.size == 0) break;
+            // console.log("BOOB!!! TEST LOL");
+            // if(tagsAggregate != undefined) {
+            //     if(tagsAggregate !== undefined) {
+
+            //         if(tagsAggregate.get(tag) >= 1) {
+            //             tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
+            //         } else {
+            //             tagsAggregate.set(tag, 1);
+            //         }    
+            //     }
+            // }
         }
     }
 }
@@ -112,7 +123,7 @@ function getTags() {
 function render() {
     clear();
     var tags: string = "";
-    tagsAggregate.forEach((value: number, key: string) => {
+    tagsAggregate?.forEach((value: number, key: string) => {
         tags = tags + processor.chip(key);
     });
     var content: string = "";
@@ -123,9 +134,11 @@ function render() {
         };
         content = content + processor.card(card);
     }
-
-    chipletContainer?.set(content);
-    cardContainer?.set(content);
+    cardContainer.innerHTML = content;
+    chipletContainer.innerHTML = tags;
+    console.log("rendered!");
+    // chipletContainer?.set(content);
+    // cardContainer?.set(content);
 
 
     // for(var a of tagsAggregate) {
