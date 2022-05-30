@@ -88,12 +88,13 @@ if (chipletContainer != undefined) {
             chipletContainer.innerHTML = content;
     };
 }
+//hello test
 var processor = {
     chip: function (name) {
-        return '<a className={landing.chiplets}>' + name + '</a>';
+        return '<a className=\{landing.chiplets\}>' + name + '</a>';
     },
     card: function (c) {
-        return '<a className={landing.cards}><img className={landing.card_thumbnail} src={"' + c.img + '"}></img><div className={landing.card_title}>' + c.title + '</div></a>';
+        return '<a className=\{landing.cards\}><img className=\{landing.card_thumbnail\} src="' + c.img + '"></img><div className=\{landing.card_title\}>' + c.title + '</div></a>';
     }
 };
 function render_cards(content) {
