@@ -123,11 +123,11 @@ function getTags() {
             //         }    
             //     }
             // }
-        }
     }
-
-
 }
+
+
+
 
 function render() {
     clear();
