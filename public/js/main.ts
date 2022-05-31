@@ -68,29 +68,18 @@ if(chipletContainer != undefined) {
         if(cardContainer != undefined) chipletContainer.innerHTML = content;
     }
 }
-//hello test
 var processor = {
     chip: function(name: string) {
         return '<a class="chiplets">' + name + '</a>';
     },
     card: function(c: Card) {
         return '<a class="cards"><img class="card_thumbnail" src="' + c.img + '"></img><div class="card_title">' + c.title + '</div></a>';
-        // return (
-        //     <a className={landing.cards}>
-        //         <img className={landing.card_thumbnail} src={c.img}></img>
-        //         <div className={landing.card_title}> {c.title} </div>
-        //     </a>
-        // );
     }
 }
 
 function render_cards(content: string) {
     if(cardContainer != null) cardContainer.innerHTML = content;
 }
-
-// function render_chips(chips: string) {
-//     if(chipletContainer != null) chipletContainer.innerHTML = chips;
-// }
 
 // MAIN CODE
 
@@ -127,12 +116,14 @@ function getTags() {
             // }
         }
     }
+
+
 }
 
 function render() {
     clear();
     var tags: string = "";
-    tagsAggregate?.forEach((value: number, key: string) => {
+    tagsAggregate?.forEach((key: string, value: number) => {
         tags = tags + processor.chip(key);
     });
     var content: string = "";

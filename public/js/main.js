@@ -89,28 +89,18 @@ if (chipletContainer != undefined) {
             chipletContainer.innerHTML = content;
     };
 }
-//hello test
 var processor = {
     chip: function (name) {
         return '<a class="chiplets">' + name + '</a>';
     },
     card: function (c) {
         return '<a class="cards"><img class="card_thumbnail" src="' + c.img + '"></img><div class="card_title">' + c.title + '</div></a>';
-        // return (
-        //     <a className={landing.cards}>
-        //         <img className={landing.card_thumbnail} src={c.img}></img>
-        //         <div className={landing.card_title}> {c.title} </div>
-        //     </a>
-        // );
     }
 };
 function render_cards(content) {
     if (cardContainer != null)
         cardContainer.innerHTML = content;
 }
-// function render_chips(chips: string) {
-//     if(chipletContainer != null) chipletContainer.innerHTML = chips;
-// }
 // MAIN CODE
 var tagsAggregate = new Map();
 function getTags() {
@@ -148,7 +138,7 @@ function getTags() {
 function render() {
     clear();
     var tags = "";
-    tagsAggregate === null || tagsAggregate === void 0 ? void 0 : tagsAggregate.forEach(function (value, key) {
+    tagsAggregate === null || tagsAggregate === void 0 ? void 0 : tagsAggregate.forEach(function (key, value) {
         tags = tags + processor.chip(key);
     });
     var content = "";
