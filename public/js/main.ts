@@ -124,9 +124,11 @@ function getTags() {
 function render() {
     clear();
     var tags: string = "";
-    tagsAggregate?.forEach((key: string, value: number) => {
+    tagsAggregate?.forEach((key: string, value: string) => {
         tags = tags + processor.chip(key);
+        console.log("key: " + key);
     });
+    console.log(tags);
     var content: string = "";
     for(var i = 0; i < contentStore.length; i++) {
         var card: Card = {

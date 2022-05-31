@@ -140,7 +140,9 @@ function render() {
     var tags = "";
     tagsAggregate === null || tagsAggregate === void 0 ? void 0 : tagsAggregate.forEach(function (key, value) {
         tags = tags + processor.chip(key);
+        console.log("key: " + key);
     });
+    console.log(tags);
     var content = "";
     for (var i = 0; i < contentStore.length; i++) {
         var card = {
