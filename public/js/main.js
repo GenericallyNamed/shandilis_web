@@ -139,8 +139,8 @@ function render() {
     clear();
     var tags = "";
     tagsAggregate === null || tagsAggregate === void 0 ? void 0 : tagsAggregate.forEach(function (key, value) {
+        console.log("key: " + key + ", value: " + value);
         tags = tags + processor.chip(key);
-        console.log("key: " + key);
     });
     console.log(tags);
     var content = "";

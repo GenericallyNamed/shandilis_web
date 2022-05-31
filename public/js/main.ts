@@ -125,8 +125,8 @@ function render() {
     clear();
     var tags: string = "";
     tagsAggregate?.forEach((key: string, value: string) => {
+        console.log("key: " + key + ", value: " + value);
         tags = tags + processor.chip(key);
-        console.log("key: " + key);
     });
     console.log(tags);
     var content: string = "";
