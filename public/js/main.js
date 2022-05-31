@@ -113,30 +113,33 @@ function getTags() {
     for (var i = 0; i < contentStore.length; i++) {
         console.log(contentStore[i]);
         console.log(contentStore[i].tags);
-        for (var tag in contentStore[i].tags) {
-            console.log("tag: " + tag);
-            tagsAggregate.set(tag, tag);
-            console.log("tagsAggregate: " + tagsAggregate);
-            // if(tagsAggregate.get(tag) >= 1) {
-            //     tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
-            // } else {
-            //     tagsAggregate.set(tag, 1);
-            // }
-            // if(typeof tagsAggregate.get(tag) == 'undefined') return;
-            // if(tagsAggregate["get"](tag) === undefined) return;
-            // if(tagsAggregate === undefined) break;
-            // if(tagsAggregate.size == 0) break;
-            // console.log("BOOB!!! TEST LOL");
-            // if(tagsAggregate != undefined) {
-            //     if(tagsAggregate !== undefined) {
-            //         if(tagsAggregate.get(tag) >= 1) {
-            //             tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
-            //         } else {
-            //             tagsAggregate.set(tag, 1);
-            //         }    
-            //     }
-            // }
+        for (var j = 0; j < contentStore[j].tags.length; j++) {
+            console.log("tag: " + contentStore[i].tags[j]);
+            tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
+        // for(var tag in contentStore[i].tags) {
+        //     console.log("tag: " + tag);
+        //     tagsAggregate.set(tag, tag);
+        //     console.log("tagsAggregate: " + tagsAggregate);
+        // if(tagsAggregate.get(tag) >= 1) {
+        //     tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
+        // } else {
+        //     tagsAggregate.set(tag, 1);
+        // }
+        // if(typeof tagsAggregate.get(tag) == 'undefined') return;
+        // if(tagsAggregate["get"](tag) === undefined) return;
+        // if(tagsAggregate === undefined) break;
+        // if(tagsAggregate.size == 0) break;
+        // console.log("BOOB!!! TEST LOL");
+        // if(tagsAggregate != undefined) {
+        //     if(tagsAggregate !== undefined) {
+        //         if(tagsAggregate.get(tag) >= 1) {
+        //             tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
+        //         } else {
+        //             tagsAggregate.set(tag, 1);
+        //         }    
+        //     }
+        // }
     }
 }
 function render() {
