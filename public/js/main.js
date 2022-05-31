@@ -170,7 +170,7 @@ function render() {
         // let cardy: any = document.querySelector("#card-container");
         // content = content + processor.card(card);
     }
-    cardContainer.innerHTML = content;
+    // cardContainer.innerHTML = content;
     // chipletContainer.innerHTML = tags;
     console.log("rendered!");
     // chipletContainer?.set(content);
