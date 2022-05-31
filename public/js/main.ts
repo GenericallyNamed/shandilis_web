@@ -2,9 +2,6 @@
 
 export {}
 
-
-console.log("test! just want to know if this runs! :)");
-
 // types:
 // - general datatype
 // - chiplet store
@@ -90,8 +87,6 @@ function getTags() {
     if(tagsAggregate == null || tagsAggregate == undefined) {
         return;
     }
-    // var tag_map = new Map();
-    // var count: number = 0;
     for(var i = 0; i < contentStore.length; i++) {
         console.log(contentStore[i]);
         console.log(contentStore[i].tags);
@@ -99,30 +94,6 @@ function getTags() {
             console.log("tag: " + contentStore[i].tags[j]);
             tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
-        // for(var tag in contentStore[i].tags) {
-        //     console.log("tag: " + tag);
-        //     tagsAggregate.set(tag, tag);
-        //     console.log("tagsAggregate: " + tagsAggregate);
-            // if(tagsAggregate.get(tag) >= 1) {
-            //     tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
-            // } else {
-            //     tagsAggregate.set(tag, 1);
-            // }
-            // if(typeof tagsAggregate.get(tag) == 'undefined') return;
-            // if(tagsAggregate["get"](tag) === undefined) return;
-            // if(tagsAggregate === undefined) break;
-            // if(tagsAggregate.size == 0) break;
-            // console.log("BOOB!!! TEST LOL");
-            // if(tagsAggregate != undefined) {
-            //     if(tagsAggregate !== undefined) {
-
-            //         if(tagsAggregate.get(tag) >= 1) {
-            //             tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
-            //         } else {
-            //             tagsAggregate.set(tag, 1);
-            //         }    
-            //     }
-            // }
     }
 }
 
@@ -141,20 +112,16 @@ function render() {
         elem.innerHTML = key;
         elem.highlightColor = "red";
         chippy.appendChild(elem);
-        // tags = tags + processor.chip(key);
     });
     console.log(tags);
     var content: string = "";
     for(var i = 0; i < contentStore.length; i++) {
-        // var card: Card = {
-        //     title: contentStore[i].name,
-        //     img: contentStore[i].img
-        // };
-
         let elem: any = document.createElement('a');
         let cardy: any = document.querySelector("#card-container");
         elem.className = "cards";
         elem.innerHTML = '<img class="card_thumbnail" src="' + contentStore[i].img + '"></img><div class="card_title">' + contentStore[i].name + '</div>';
+        elem.tags = contentStore[i].tags;
+        console.log(elem.tags);
         cardy.appendChild(elem);
         // let cardy: any = document.querySelector("#card-container");
 
@@ -163,16 +130,6 @@ function render() {
     // cardContainer.innerHTML = content;
     // chipletContainer.innerHTML = tags;
     console.log("rendered!");
-    // chipletContainer?.set(content);
-    // cardContainer?.set(content);
-
-
-    // for(var a of tagsAggregate) {
-    //     tags = tags + processor.chip(a[0])
-    // }
-    // for(var i: number = 0; i < tagsAggregate.size; i++) {
-    //     tags = tags + processor.chip(tagsAggregate);
-    // }
 }
 
 function clear() {
