@@ -28,6 +28,8 @@
     max-width: 300px;
     font-weight:300;
     font-family:'Libre Franklin';
+    user-select:none;
+    cursor:pointer;
 }
 
 .content_container {
@@ -49,6 +51,8 @@
     transition: color 0.15s ease, border-color 0.15s ease;
     max-width: 300px;
     overflow:hidden;
+    user-select:none;
+    cursor:pointer;
 }
 
 .card_thumbnail {

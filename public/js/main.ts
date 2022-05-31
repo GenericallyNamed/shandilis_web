@@ -135,19 +135,33 @@ function render() {
 
     tagsAggregate?.forEach((key: string, value: string) => {
         console.log("key: " + key + ", value: " + value);
-        tags = tags + processor.chip(key);
+        let elem: any = document.createElement('a');
+        let chippy: any = document.querySelector("#chiplet-container");
+        elem.className = "chiplets";
+        elem.innerHTML = key;
+        elem.highlightColor = "red";
+        chippy.appendChild(elem);
+        // tags = tags + processor.chip(key);
     });
     console.log(tags);
     var content: string = "";
     for(var i = 0; i < contentStore.length; i++) {
-        var card: Card = {
-            title: contentStore[i].name,
-            img: contentStore[i].img
-        };
-        content = content + processor.card(card);
+        // var card: Card = {
+        //     title: contentStore[i].name,
+        //     img: contentStore[i].img
+        // };
+
+        let elem: any = document.createElement('a');
+        let cardy: any = document.querySelector("#card-container");
+        elem.className = "cards";
+        elem.innerHTML = '<img class="card_thumbnail" src="' + contentStore[i].img + '"></img><div class="card_title">' + contentStore[i].name + '</div>';
+        cardy.appendChild(elem);
+        // let cardy: any = document.querySelector("#card-container");
+
+        // content = content + processor.card(card);
     }
     cardContainer.innerHTML = content;
-    chipletContainer.innerHTML = tags;
+    // chipletContainer.innerHTML = tags;
     console.log("rendered!");
     // chipletContainer?.set(content);
     // cardContainer?.set(content);
