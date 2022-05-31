@@ -93,6 +93,8 @@ function getTags() {
     // var tag_map = new Map();
     // var count: number = 0;
     for(var i = 0; i < contentStore.length; i++) {
+        console.log(contentStore[i]);
+        console.log(contentStore[i].tags);
         for(var tag in contentStore[i].tags) {
             console.log("tag: " + tag);
             tagsAggregate.set(tag, tag);
