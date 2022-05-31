@@ -12,6 +12,8 @@ const Home: NextPage = () => {
         <title>shandilis.dev</title>
         <meta name="description" content="alex's personal portfolio" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="main.css"/>
+
       </Head>
       <Script id="set-export">
         {`var exports = {}; console.log("testy test")`}

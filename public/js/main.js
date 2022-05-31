@@ -1,4 +1,5 @@
 "use strict";
+// import landing from '../styles/landing.module.css';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -91,10 +92,16 @@ if (chipletContainer != undefined) {
 //hello test
 var processor = {
     chip: function (name) {
-        return '<a className=\{landing.chiplets\}>' + name + '</a>';
+        return '<a class="chiplets">' + name + '</a>';
     },
     card: function (c) {
-        return '<a className=\{landing.cards\}><img className=\{landing.card_thumbnail\} src="' + c.img + '"></img><div className=\{landing.card_title\}>' + c.title + '</div></a>';
+        return '<a class="cards"><img class="card_thumbnail" src="' + c.img + '"></img><div class="card_title">' + c.title + '</div></a>';
+        // return (
+        //     <a className={landing.cards}>
+        //         <img className={landing.card_thumbnail} src={c.img}></img>
+        //         <div className={landing.card_title}> {c.title} </div>
+        //     </a>
+        // );
     }
 };
 function render_cards(content) {
