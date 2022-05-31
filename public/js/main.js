@@ -112,12 +112,12 @@ function getTags() {
     // var count: number = 0;
     for (var i = 0; i < contentStore.length; i++) {
         for (var tag in contentStore[i].tags) {
-            if (tagsAggregate.get(tag) >= 1) {
-                tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
-            }
-            else {
-                tagsAggregate.set(tag, 1);
-            }
+            tagsAggregate.set(tag, tag);
+            // if(tagsAggregate.get(tag) >= 1) {
+            //     tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
+            // } else {
+            //     tagsAggregate.set(tag, 1);
+            // }
             // if(typeof tagsAggregate.get(tag) == 'undefined') return;
             // if(tagsAggregate["get"](tag) === undefined) return;
             // if(tagsAggregate === undefined) break;
