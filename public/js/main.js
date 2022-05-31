@@ -112,7 +112,9 @@ function getTags() {
     // var count: number = 0;
     for (var i = 0; i < contentStore.length; i++) {
         for (var tag in contentStore[i].tags) {
+            console.log("tag: " + tag);
             tagsAggregate.set(tag, tag);
+            console.log("tagsAggregate: " + tagsAggregate);
             // if(tagsAggregate.get(tag) >= 1) {
             //     tagsAggregate.set(tag, tagsAggregate.get(tag) + 1);
             // } else {
