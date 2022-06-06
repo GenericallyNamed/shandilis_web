@@ -162,6 +162,7 @@ getContent();
 function window_onMove() {
     let elem = document.querySelector("a.cards:hover");
     let cards = document.querySelectorAll("a.cards");
+    console.log("mouse moved");
     for(var i = 0; i < cards.length; i++) {
         if(cards[i] != elem) {
             cards[i].classList.add("unhover");
