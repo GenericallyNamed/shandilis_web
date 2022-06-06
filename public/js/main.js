@@ -183,7 +183,7 @@ function window_onMove() {
         }
         else {
             cards[i].classList.add("hover");
-            cards[i].classList.remove("hover");
+            cards[i].classList.remove("unhover");
         }
     }
 }
