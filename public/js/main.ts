@@ -116,10 +116,10 @@ function render() {
         elem.tags = contentStore[i].tags;
         console.log(elem.tags);
         cardy.appendChild(elem);
-        elem.addEventListener("mouseover", function() {
-            console.log("moused over");
-            card_hover(elem);
-        });
+        // elem.addEventListener("mouseover", function() {
+        //     console.log("moused over");
+        //     card_hover(elem);
+        // });
     }
     window.addEventListener("mousemove", function() {
         window_onMove();
@@ -140,25 +140,35 @@ getContent();
 
 // HOVER CODE
 
-function card_hover(elem: any) {
-    if(elem.matches(':hover')) {
-        elem.hovered = true;
-        elem.classList.add("hover");
-        elem.classList.remove("unhover");
-        let cards = document.querySelectorAll("a.cards");
-        for(var i = 0; i < cards.length; i++) {
-            if(cards[i] != elem) {
-                cards[i].classList.add("unhover");
-                cards[i].classList.remove("hover");
-            }
-        }
-    } else {
-        elem.hovered = false;
-        elem.classList.add("unhover");
-        elem.classList.remove("hover");
-    }
-}
+// function card_hover(elem: any) {
+//     if(elem.matches(':hover')) {
+//         elem.hovered = true;
+//         elem.classList.add("hover");
+//         elem.classList.remove("unhover");
+//         let cards = document.querySelectorAll("a.cards");
+//         for(var i = 0; i < cards.length; i++) {
+//             if(cards[i] != elem) {
+//                 cards[i].classList.add("unhover");
+//                 cards[i].classList.remove("hover");
+//             }
+//         }
+//     } else {
+//         elem.hovered = false;
+//         elem.classList.add("unhover");
+//         elem.classList.remove("hover");
+//     }
+// }
 
 function window_onMove() {
-
+    let elem = document.querySelector("a.cards:hover");
+    let cards = document.querySelectorAll("a.cards");
+    for(var i = 0; i < cards.length; i++) {
+        if(cards[i] != elem) {
+            cards[i].classList.add("unhover");
+            cards[i].classList.remove("hover");
+        } else {
+            cards[i].classList.add("hover");
+            cards[i].classList.remove("hover");
+        }
+    }
 }
