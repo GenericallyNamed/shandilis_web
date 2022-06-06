@@ -24,10 +24,6 @@ type Content = {
     tags: string[]
 }
 
-// var tagsAggregate = new Map<string, number>();
-
-// var chipletStore: Chiplet[] = [];
-// var cardStore: Card[] = [];
 var contentStore: Content[] = [];
 
 console.log("stage 1");
@@ -97,9 +93,6 @@ function getTags() {
     }
 }
 
-
-
-
 function render() {
     clear();
     var tags: string = "";
@@ -123,13 +116,14 @@ function render() {
         elem.tags = contentStore[i].tags;
         console.log(elem.tags);
         cardy.appendChild(elem);
-        // let cardy: any = document.querySelector("#card-container");
-
-        // content = content + processor.card(card);
+        elem.addEventListener("mouseover", function() {
+            console.log("moused over");
+            card_hover(elem);
+        });
     }
-    // cardContainer.innerHTML = content;
-    // chipletContainer.innerHTML = tags;
     console.log("rendered!");
+
+
 }
 
 function clear() {
@@ -140,3 +134,17 @@ function clear() {
 console.log("stage 2");
 
 getContent();
+
+// HOVER CODE
+
+function card_hover(elem: any) {
+    if(elem.matches(':hover')) {
+        elem.hovered = true;
+        elem.classList.add("hover");
+        elem.classList.remove("unhover");
+    } else {
+        elem.hovered = false;
+        elem.classList.add("unhover");
+        elem.classList.remove("hover");
+    }
+}

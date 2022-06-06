@@ -1,3 +1,8 @@
+@font-face {
+    font-family:'Libre Franklin';
+    src: url('LibreFranklin-VariableFont_wght.ttf');
+}
+
 .header {
     font-family:'Libre Franklin';
     font-weight:700;
@@ -62,4 +67,18 @@
 .card_title {
     padding:1.5rem;
     text-align:center;
+}
+
+/* CONTENT INTERACTIONS */
+
+.cards .hover {
+    transform:scale(1.2);
+    border: 3px solid red !important;
+    box-shadow: 0px 2px 5px 0px rgba(255, 0, 0, 0.692);
+}
+
+.cards .unhover {
+    transform:scale(1);
+    border: unset;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.692);
 }

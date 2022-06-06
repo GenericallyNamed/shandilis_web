@@ -37,9 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-// var tagsAggregate = new Map<string, number>();
-// var chipletStore: Chiplet[] = [];
-// var cardStore: Card[] = [];
 var contentStore = [];
 console.log("stage 1");
 function getContent() {
@@ -130,7 +127,7 @@ function render() {
     });
     console.log(tags);
     var content = "";
-    for (var i = 0; i < contentStore.length; i++) {
+    var _loop_1 = function () {
         var elem = document.createElement('a');
         var cardy = document.querySelector("#card-container");
         elem.className = "cards";
@@ -138,11 +135,14 @@ function render() {
         elem.tags = contentStore[i].tags;
         console.log(elem.tags);
         cardy.appendChild(elem);
-        // let cardy: any = document.querySelector("#card-container");
-        // content = content + processor.card(card);
+        elem.addEventListener("mouseover", function () {
+            console.log("moused over");
+            card_hover(elem);
+        });
+    };
+    for (var i = 0; i < contentStore.length; i++) {
+        _loop_1();
     }
-    // cardContainer.innerHTML = content;
-    // chipletContainer.innerHTML = tags;
     console.log("rendered!");
 }
 function clear() {
@@ -153,3 +153,16 @@ function clear() {
 }
 console.log("stage 2");
 getContent();
+// HOVER CODE
+function card_hover(elem) {
+    if (elem.matches(':hover')) {
+        elem.hovered = true;
+        elem.classList.add("hover");
+        elem.classList.remove("unhover");
+    }
+    else {
+        elem.hovered = false;
+        elem.classList.add("unhover");
+        elem.classList.remove("hover");
+    }
+}
