@@ -143,6 +143,9 @@ function render() {
     for (var i = 0; i < contentStore.length; i++) {
         _loop_1();
     }
+    window.addEventListener("mousemove", function () {
+        window_onMove();
+    });
     console.log("rendered!");
 }
 function clear() {
@@ -159,10 +162,19 @@ function card_hover(elem) {
         elem.hovered = true;
         elem.classList.add("hover");
         elem.classList.remove("unhover");
+        var cards = document.querySelectorAll("a.cards");
+        for (var i = 0; i < cards.length; i++) {
+            if (cards[i] != elem) {
+                cards[i].classList.add("unhover");
+                cards[i].classList.remove("hover");
+            }
+        }
     }
     else {
         elem.hovered = false;
         elem.classList.add("unhover");
         elem.classList.remove("hover");
     }
+}
+function window_onMove() {
 }

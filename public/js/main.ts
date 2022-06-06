@@ -121,6 +121,9 @@ function render() {
             card_hover(elem);
         });
     }
+    window.addEventListener("mousemove", function() {
+        window_onMove();
+    });
     console.log("rendered!");
 
 
@@ -142,9 +145,20 @@ function card_hover(elem: any) {
         elem.hovered = true;
         elem.classList.add("hover");
         elem.classList.remove("unhover");
+        let cards = document.querySelectorAll("a.cards");
+        for(var i = 0; i < cards.length; i++) {
+            if(cards[i] != elem) {
+                cards[i].classList.add("unhover");
+                cards[i].classList.remove("hover");
+            }
+        }
     } else {
         elem.hovered = false;
         elem.classList.add("unhover");
         elem.classList.remove("hover");
     }
+}
+
+function window_onMove() {
+
 }
