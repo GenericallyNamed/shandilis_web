@@ -71,7 +71,7 @@ function getTags() {
     for(var i = 0; i < contentStore.length; i++) {
         console.log(contentStore[i]);
         console.log(contentStore[i].tags);
-        for(var j = 0; j < contentStore[j].tags.length; j++) {
+        for(var j = 0; j < contentStore[i].tags.length; j++) {
             console.log("tag: " + contentStore[i].tags[j]);
             tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
@@ -193,14 +193,14 @@ var filter = {
     },
     update: function() {
         console.log("current tags: " + this.tags);
-        let elems: any = document.querySelectorAll("a.cards");
-        for(var i = 0; i < elems.length; i++) {
-            elems[i].style.width = "unset";
+        let cards: any = document.querySelectorAll("a.cards");
+        for(var i = 0; i < cards.length; i++) {
+            cards[i].style.width = "unset";
         }
-        for(var i = 0; i < elems.length; i++) {
+        for(var i = 0; i < cards.length; i++) {
             for(var tag in this.tags) {
-                if(elems[i].tags.indexOf(tag) == -1) {
-                    elems[i].style.width = "0";
+                if(cards[i].tags.indexOf(tag) == -1) {
+                    cards[i].style.width = "0";
                 } 
             }
         }
