@@ -1,7 +1,18 @@
+/* FONT CORE */
+
 @font-face {
     font-family:'Libre Franklin';
     src: url('LibreFranklin-VariableFont_wght.ttf');
 }
+.material-symbols-outlined {
+    font-variation-settings: 
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48;
+}
+
+/* PRIMARY STYLES */
 
 .header {
     font-family:'Libre Franklin';
@@ -74,8 +85,8 @@
 
 .cards.hover {
     transform:scale(1.2);
-    border: 3px solid red !important;
-    box-shadow: 0px 2px 15px 0px rgba(255, 0, 0, 0.8);
+    border: 1px solid #f96f6f !important;
+    box-shadow: 0px 2px 15px 0px #f96f6f;
 }
 
 .cards.unhover {
