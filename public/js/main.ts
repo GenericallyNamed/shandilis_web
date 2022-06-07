@@ -175,7 +175,7 @@ function window_onMove() {
 var filter = {
     tags: Array<string>(),
     add: function(tag: string) {
-        if(this.tags.indexOf(tag) != -1) {
+        if(this.tags.indexOf(tag) == -1) {
             this.tags.push(tag);
             this.update();
         }    
