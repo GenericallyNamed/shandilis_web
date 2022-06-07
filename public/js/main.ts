@@ -1,5 +1,7 @@
 // import landing from '../styles/landing.module.css';
 
+import { isJSDocThisTag } from "typescript";
+
 export {}
 
 // types:
@@ -29,12 +31,8 @@ var contentStore: Content[] = [];
 console.log("stage 1");
 
 async function getContent() {
-    console.log("testy fart");
     var a = await fetch("/.netlify/functions/content");
-    console.log(a);
     var b = await a.json();
-    console.log(b);
-    console.log("testy fart 2");
     for(var i = 0; i < b.length; i++) {
         let content: Content = {
             name: b[i].name,
@@ -44,7 +42,6 @@ async function getContent() {
         contentStore.push(content);
     }
     console.log(contentStore);
-    console.log("test!!! BRUH");
     getTags();
     render();
 }
@@ -60,18 +57,6 @@ if(chipletContainer != undefined) {
     chipletContainer.set = function(content: string) {
         if(cardContainer != undefined) chipletContainer.innerHTML = content;
     }
-}
-var processor = {
-    chip: function(name: string) {
-        return '<a class="chiplets">' + name + '</a>';
-    },
-    card: function(c: Card) {
-        return '<a class="cards"><img class="card_thumbnail" src="' + c.img + '"></img><div class="card_title">' + c.title + '</div></a>';
-    }
-}
-
-function render_cards(content: string) {
-    if(cardContainer != null) cardContainer.innerHTML = content;
 }
 
 // MAIN CODE
@@ -104,6 +89,22 @@ function render() {
         elem.className = "chiplets";
         elem.innerHTML = key;
         elem.highlightColor = "red";
+        elem.tag = key;
+        elem.toggled = false;
+        elem.addEventListener("click", (event:any) => {
+            let elem = event.currentTarget;
+            if(elem.toggled) {
+                filter.remove(elem.tag);
+                elem.classList.remove("hover");
+                elem.classList.add("unhover");
+                elem.toggled = false;
+            } else {
+                filter.add(elem.tag);
+                elem.classList.remove("unhover");
+                elem.classList.add("hover");
+                elem.toggled = true;
+            }
+        });
         chippy.appendChild(elem);
     });
     console.log(tags);
@@ -116,10 +117,6 @@ function render() {
         elem.tags = contentStore[i].tags;
         console.log(elem.tags);
         cardy.appendChild(elem);
-        // elem.addEventListener("mouseover", function() {
-        //     console.log("moused over");
-        //     card_hover(elem);
-        // });
     }
     window.addEventListener("mousemove", function() {
         window_onMove();
@@ -140,36 +137,77 @@ getContent();
 
 // HOVER CODE
 
-// function card_hover(elem: any) {
-//     if(elem.matches(':hover')) {
-//         elem.hovered = true;
-//         elem.classList.add("hover");
-//         elem.classList.remove("unhover");
-//         let cards = document.querySelectorAll("a.cards");
-//         for(var i = 0; i < cards.length; i++) {
-//             if(cards[i] != elem) {
-//                 cards[i].classList.add("unhover");
-//                 cards[i].classList.remove("hover");
-//             }
-//         }
-//     } else {
-//         elem.hovered = false;
-//         elem.classList.add("unhover");
-//         elem.classList.remove("hover");
-//     }
-// }
-
 function window_onMove() {
-    let elem = document.querySelector("a.cards:hover");
-    let cards = document.querySelectorAll("a.cards");
     console.log("mouse moved");
-    for(var i = 0; i < cards.length; i++) {
-        if(cards[i] != elem) {
-            cards[i].classList.add("unhover");
-            cards[i].classList.remove("hover");
-        } else {
-            cards[i].classList.add("hover");
-            cards[i].classList.remove("unhover");
+
+    let elem = document.querySelector("a:hover");
+    let chips = document.querySelectorAll("a.chiplets");
+    let cards = document.querySelectorAll("a.cards");
+    if(elem?.matches("a.chips")) {
+
+    } else if(elem?.matches("a.cards")) {
+        for(var i = 0; i < cards.length; i++) {
+            if(cards[i] != elem) {
+                cards[i].classList.add("unhover");
+                cards[i].classList.remove("hover");
+            } else {
+                cards[i].classList.add("hover");
+                cards[i].classList.remove("unhover");
+            }
         }
     }
+}
+
+// FILTER FUNCTIONALITY
+
+var filter = {
+    tags: Array<string>(),
+    add: function(tag: string) {
+        if(this.tags.indexOf(tag) != -1) {
+            this.tags.push(tag);
+            this.update();
+        }    
+    },
+    remove: function(tag: string) {
+        let i = this.tags.indexOf(tag);
+        if(i != -1) {
+            this.tags.splice(i, 1);
+            this.update();
+        }
+    },
+    clear: function() {
+        this.tags = new Array<string>();
+        this.update();
+    },
+    update: function() {
+        let elems: any = document.querySelectorAll("a.cards");
+        for(var i = 0; i < elems.length; i++) {
+            for(var tag in this.tags) {
+                if(elems[i].tags.indexOf(tag) == -1) {
+                    elems[i].style.width = "0";
+                } else {
+                    elems[i].style.width = "unset";
+                }
+            }
+        }
+    },
+    highlight_search: function(tag: string) {
+        let elems = document.querySelectorAll("a.cards");
+        for(var i = 0; i < elems.length; i++) {
+            let elem: any = elems[i];
+            if(elem.tags.indexOf(tag) != -1) {
+                elem.classList.add("highlight");
+            } else {
+                elem.classList.remove("highlight");
+            }
+        }
+    },
+    unhighlight: function() {
+        let elems = document.querySelectorAll("a.cards");
+        for(var i = 0; i < elems.length; i++) {
+            elems[i].classList.remove("highlight");
+        }
+    }
+
+
 }

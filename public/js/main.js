@@ -44,17 +44,12 @@ function getContent() {
         var a, b, i, content;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log("testy fart");
-                    return [4 /*yield*/, fetch("/.netlify/functions/content")];
+                case 0: return [4 /*yield*/, fetch("/.netlify/functions/content")];
                 case 1:
                     a = _a.sent();
-                    console.log(a);
                     return [4 /*yield*/, a.json()];
                 case 2:
                     b = _a.sent();
-                    console.log(b);
-                    console.log("testy fart 2");
                     for (i = 0; i < b.length; i++) {
                         content = {
                             name: b[i].name,
@@ -64,7 +59,6 @@ function getContent() {
                         contentStore.push(content);
                     }
                     console.log(contentStore);
-                    console.log("test!!! BRUH");
                     getTags();
                     render();
                     return [2 /*return*/];
@@ -84,18 +78,6 @@ if (chipletContainer != undefined) {
         if (cardContainer != undefined)
             chipletContainer.innerHTML = content;
     };
-}
-var processor = {
-    chip: function (name) {
-        return '<a class="chiplets">' + name + '</a>';
-    },
-    card: function (c) {
-        return '<a class="cards"><img class="card_thumbnail" src="' + c.img + '"></img><div class="card_title">' + c.title + '</div></a>';
-    }
-};
-function render_cards(content) {
-    if (cardContainer != null)
-        cardContainer.innerHTML = content;
 }
 // MAIN CODE
 var tagsAggregate = new Map();
@@ -123,6 +105,23 @@ function render() {
         elem.className = "chiplets";
         elem.innerHTML = key;
         elem.highlightColor = "red";
+        elem.tag = key;
+        elem.toggled = false;
+        elem.addEventListener("click", function (event) {
+            var elem = event.currentTarget;
+            if (elem.toggled) {
+                filter.remove(elem.tag);
+                elem.classList.remove("hover");
+                elem.classList.add("unhover");
+                elem.toggled = false;
+            }
+            else {
+                filter.add(elem.tag);
+                elem.classList.remove("unhover");
+                elem.classList.add("hover");
+                elem.toggled = true;
+            }
+        });
         chippy.appendChild(elem);
     });
     console.log(tags);
@@ -135,10 +134,6 @@ function render() {
         elem.tags = contentStore[i].tags;
         console.log(elem.tags);
         cardy.appendChild(elem);
-        // elem.addEventListener("mouseover", function() {
-        //     console.log("moused over");
-        //     card_hover(elem);
-        // });
     }
     window.addEventListener("mousemove", function () {
         window_onMove();
@@ -154,36 +149,75 @@ function clear() {
 console.log("stage 2");
 getContent();
 // HOVER CODE
-// function card_hover(elem: any) {
-//     if(elem.matches(':hover')) {
-//         elem.hovered = true;
-//         elem.classList.add("hover");
-//         elem.classList.remove("unhover");
-//         let cards = document.querySelectorAll("a.cards");
-//         for(var i = 0; i < cards.length; i++) {
-//             if(cards[i] != elem) {
-//                 cards[i].classList.add("unhover");
-//                 cards[i].classList.remove("hover");
-//             }
-//         }
-//     } else {
-//         elem.hovered = false;
-//         elem.classList.add("unhover");
-//         elem.classList.remove("hover");
-//     }
-// }
 function window_onMove() {
-    var elem = document.querySelector("a.cards:hover");
-    var cards = document.querySelectorAll("a.cards");
     console.log("mouse moved");
-    for (var i = 0; i < cards.length; i++) {
-        if (cards[i] != elem) {
-            cards[i].classList.add("unhover");
-            cards[i].classList.remove("hover");
-        }
-        else {
-            cards[i].classList.add("hover");
-            cards[i].classList.remove("unhover");
+    var elem = document.querySelector("a:hover");
+    var chips = document.querySelectorAll("a.chiplets");
+    var cards = document.querySelectorAll("a.cards");
+    if (elem === null || elem === void 0 ? void 0 : elem.matches("a.chips")) {
+    }
+    else if (elem === null || elem === void 0 ? void 0 : elem.matches("a.cards")) {
+        for (var i = 0; i < cards.length; i++) {
+            if (cards[i] != elem) {
+                cards[i].classList.add("unhover");
+                cards[i].classList.remove("hover");
+            }
+            else {
+                cards[i].classList.add("hover");
+                cards[i].classList.remove("unhover");
+            }
         }
     }
 }
+// FILTER FUNCTIONALITY
+var filter = {
+    tags: Array(),
+    add: function (tag) {
+        if (this.tags.indexOf(tag) != -1) {
+            this.tags.push(tag);
+            this.update();
+        }
+    },
+    remove: function (tag) {
+        var i = this.tags.indexOf(tag);
+        if (i != -1) {
+            this.tags.splice(i, 1);
+            this.update();
+        }
+    },
+    clear: function () {
+        this.tags = new Array();
+        this.update();
+    },
+    update: function () {
+        var elems = document.querySelectorAll("a.cards");
+        for (var i = 0; i < elems.length; i++) {
+            for (var tag in this.tags) {
+                if (elems[i].tags.indexOf(tag) == -1) {
+                    elems[i].style.width = "0";
+                }
+                else {
+                    elems[i].style.width = "unset";
+                }
+            }
+        }
+    },
+    highlight_search: function (tag) {
+        var elems = document.querySelectorAll("a.cards");
+        for (var i = 0; i < elems.length; i++) {
+            var elem = elems[i];
+            if (elem.tags.indexOf(tag) != -1) {
+                elem.classList.add("highlight");
+            }
+            else {
+                elem.classList.remove("highlight");
+            }
+        }
+    },
+    unhighlight: function () {
+        var elems = document.querySelectorAll("a.cards");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].classList.remove("highlight");
+        }
+    }
+};
