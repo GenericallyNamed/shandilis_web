@@ -161,6 +161,7 @@ function window_onMove() {
         for(var i = 0; i < cards.length; i++) {
             cards[i].classList.add("unhover");
             cards[i].classList.remove("hover");
+            cards[i].classList.remove("highlight");
 
         }
         for(var i = 0; i < chips.length; i++) {
