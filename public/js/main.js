@@ -102,7 +102,7 @@ function render() {
         console.log("key: " + key + ", value: " + value);
         var elem = document.createElement('a');
         var chippy = document.querySelector("#chiplet-container");
-        elem.className = "chiplets";
+        elem.className = "chips";
         elem.innerHTML = key;
         elem.highlightColor = "red";
         elem.tag = key;
@@ -152,9 +152,11 @@ getContent();
 function window_onMove() {
     console.log("mouse moved");
     var elem = document.querySelector("a:hover");
-    var chips = document.querySelectorAll("a.chiplets");
+    var chips = document.querySelectorAll("a.chips");
     var cards = document.querySelectorAll("a.cards");
     if (elem === null || elem === void 0 ? void 0 : elem.matches("a.chips")) {
+        console.log("hovering over a chip");
+        filter.highlight_search(elem.tag);
     }
     else if (elem === null || elem === void 0 ? void 0 : elem.matches("a.cards")) {
         for (var i = 0; i < cards.length; i++) {
@@ -166,6 +168,15 @@ function window_onMove() {
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
             }
+        }
+    }
+    else {
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.add("unhover");
+            cards[i].classList.remove("hover");
+        }
+        for (var i = 0; i < chips.length; i++) {
+            chips[i].classList.remove("hover");
         }
     }
 }

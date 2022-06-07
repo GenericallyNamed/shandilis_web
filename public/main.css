@@ -84,7 +84,7 @@
     box-shadow: unset;
 }
 
-.chiplets:hover {
+.chips:hover {
     border-width: 1px;
     border-style: inset;
     
