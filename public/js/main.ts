@@ -97,11 +97,13 @@ function render() {
                 filter.remove(elem.tag);
                 elem.classList.remove("hover");
                 elem.classList.add("unhover");
+                elem.classList.add("selected");
                 elem.toggled = false;
             } else {
                 filter.add(elem.tag);
                 elem.classList.remove("unhover");
                 elem.classList.add("hover");
+                elem.classList.remove("selected");
                 elem.toggled = true;
             }
         });
@@ -195,12 +197,12 @@ var filter = {
         console.log("current tags: " + this.tags);
         let cards: any = document.querySelectorAll("a.cards");
         for(var i = 0; i < cards.length; i++) {
-            cards[i].style.width = "unset";
+            cards[i].classList.remove("forced_hidden");
         }
         for(var i = 0; i < cards.length; i++) {
             for(var tag in this.tags) {
                 if(cards[i].tags.indexOf(this.tags[tag]) == -1) {
-                    cards[i].style.width = "0";
+                    cards[i].classList.add("forced_hidden");
                 } 
             }
         }
@@ -222,6 +224,4 @@ var filter = {
             elems[i].classList.remove("highlight");
         }
     }
-
-
 }
