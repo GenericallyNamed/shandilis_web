@@ -202,14 +202,15 @@ var filter = {
         this.update();
     },
     update: function () {
+        console.log("current tags: " + this.tags);
         var elems = document.querySelectorAll("a.cards");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].style.width = "unset";
+        }
         for (var i = 0; i < elems.length; i++) {
             for (var tag in this.tags) {
                 if (elems[i].tags.indexOf(tag) == -1) {
                     elems[i].style.width = "0";
-                }
-                else {
-                    elems[i].style.width = "unset";
                 }
             }
         }
