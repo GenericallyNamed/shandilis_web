@@ -209,7 +209,7 @@ var filter = {
         }
         for (var i = 0; i < cards.length; i++) {
             for (var tag in this.tags) {
-                if (cards[i].tags.indexOf(tag) == -1) {
+                if (cards[i].tags.indexOf(this.tags[tag]) == -1) {
                     cards[i].style.width = "0";
                 }
             }
