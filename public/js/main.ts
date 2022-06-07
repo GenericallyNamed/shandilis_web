@@ -97,13 +97,13 @@ function render() {
                 filter.remove(elem.tag);
                 elem.classList.remove("hover");
                 elem.classList.add("unhover");
-                elem.classList.add("selected");
+                elem.classList.remove("selected");
                 elem.toggled = false;
             } else {
                 filter.add(elem.tag);
                 elem.classList.remove("unhover");
                 elem.classList.add("hover");
-                elem.classList.remove("selected");
+                elem.classList.add("selected");
                 elem.toggled = true;
             }
         });
