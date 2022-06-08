@@ -120,8 +120,8 @@ function render() {
         console.log(elem.tags);
         cardy.appendChild(elem);
     }
-    window.addEventListener("mousemove", function() {
-        window_onMove();
+    window.addEventListener("mousemove", function(event) {
+        window_onMove(event);
     });
     console.log("rendered!");
 
@@ -139,7 +139,7 @@ getContent();
 
 // HOVER CODE
 
-function window_onMove() {
+function window_onMove(event:any) {
     console.log("mouse moved");
 
     let elem:any = document.querySelector("a:hover");
@@ -150,13 +150,23 @@ function window_onMove() {
         filter.highlight_search(elem.tag);
     } else if(elem?.matches("a.cards")) {
         for(var i = 0; i < cards.length; i++) {
+            var card: any;
+            card = cards[i];
             if(cards[i] != elem) {
                 cards[i].classList.add("unhover");
                 cards[i].classList.remove("hover");
+                card.style.transform = "unset";
             } else {
+                let mouseX = event.clientX, mouseY = event.clientY;
+                let offX = card.offsetLeft, offY = card.offsetTop;
+                let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
+                let x = mouseX - offX + cardWidth * 0.5, y = mouseY - offY + cardHeight * 0.5;
+                let rotX = x / (cardWidth * 0.5), rotY = y / (cardHeight * 0.5);
+                card.style.transform = "rotate3d(" + rotY + ", " + rotX + ", 0, 45deg) scale(1.2)";
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
             }
+
         }
     }
     else {

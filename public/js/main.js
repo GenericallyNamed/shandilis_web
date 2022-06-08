@@ -137,8 +137,8 @@ function render() {
         console.log(elem.tags);
         cardy.appendChild(elem);
     }
-    window.addEventListener("mousemove", function () {
-        window_onMove();
+    window.addEventListener("mousemove", function (event) {
+        window_onMove(event);
     });
     console.log("rendered!");
 }
@@ -151,7 +151,7 @@ function clear() {
 console.log("stage 2");
 getContent();
 // HOVER CODE
-function window_onMove() {
+function window_onMove(event) {
     console.log("mouse moved");
     var elem = document.querySelector("a:hover");
     var chips = document.querySelectorAll("a.chips");
@@ -162,11 +162,20 @@ function window_onMove() {
     }
     else if (elem === null || elem === void 0 ? void 0 : elem.matches("a.cards")) {
         for (var i = 0; i < cards.length; i++) {
+            var card;
+            card = cards[i];
             if (cards[i] != elem) {
                 cards[i].classList.add("unhover");
                 cards[i].classList.remove("hover");
+                card.style.transform = "unset";
             }
             else {
+                var mouseX = event.clientX, mouseY = event.clientY;
+                var offX = card.offsetLeft, offY = card.offsetTop;
+                var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
+                var x = mouseX - offX + cardWidth * 0.5, y = mouseY - offY + cardHeight * 0.5;
+                var rotX = x / (cardWidth * 0.5), rotY = y / (cardHeight * 0.5);
+                card.style.transform = "rotate3d(" + rotY + ", " + rotX + ", 0, 45deg) scale(1.2)";
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
             }
