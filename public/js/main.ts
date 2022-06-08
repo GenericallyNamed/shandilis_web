@@ -160,7 +160,7 @@ function window_onMove(event:any) {
                 let mouseX = event.clientX, mouseY = event.clientY;
                 let offX = card.offsetLeft, offY = card.offsetTop;
                 let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
-                let x = mouseX - offX + cardWidth * 0.5, y = mouseY - offY + cardHeight * 0.5;
+                let x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
                 let rotX = x / (cardWidth * 0.5), rotY = y / (cardHeight * 0.5);
                 card.style.transform = "rotate3d(" + rotY + ", " + rotX + ", 0, 45deg) scale(1.2)";
                 cards[i].classList.add("hover");
@@ -171,9 +171,11 @@ function window_onMove(event:any) {
     }
     else {
         for(var i = 0; i < cards.length; i++) {
-            cards[i].classList.add("unhover");
-            cards[i].classList.remove("hover");
-            cards[i].classList.remove("highlight");
+            let card:any = cards[i];
+            card.classList.add("unhover");
+            card.style.transform = "unset";
+            card.classList.remove("hover");
+            card.classList.remove("highlight");
 
         }
         for(var i = 0; i < chips.length; i++) {
