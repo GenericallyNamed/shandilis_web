@@ -170,11 +170,12 @@ function window_onMove(event) {
                 card.style.transform = "unset";
             }
             else {
+                card.style.transition = "transform 0.1s";
                 var mouseX = event.clientX, mouseY = event.clientY;
                 var offX = card.offsetLeft, offY = card.offsetTop;
                 var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
                 var x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
-                var rotX = x / (cardWidth * 0.5), rotY = y / (cardHeight * 0.5);
+                var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
                 card.style.transform = "rotate3d(" + rotY + ", " + rotX + ", 0, 45deg) scale(1.2)";
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
