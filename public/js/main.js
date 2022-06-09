@@ -1,5 +1,4 @@
 "use strict";
-// import landing from '../styles/landing.module.css';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,6 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+window.hoverX = -20;
+window.hoverY = 10;
 var contentStore = [];
 console.log("stage 1");
 function getContent() {
@@ -156,6 +157,7 @@ function window_onMove(event) {
     var elem = document.querySelector("a:hover");
     var chips = document.querySelectorAll("a.chips");
     var cards = document.querySelectorAll("a.cards");
+    window.hoverX = 20;
     if (elem === null || elem === void 0 ? void 0 : elem.matches("a.chips")) {
         console.log("hovering over a chip");
         filter.highlight_search(elem.tag);
@@ -178,7 +180,7 @@ function window_onMove(event) {
                 var x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
                 var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
                 // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
-                card.style.transform = "rotateX(" + -20 * rotY + "deg) rotateY(" + 10 * rotX + "deg) scale(1.2)";
+                card.style.transform = "rotateX(" + window.hoverX * rotY + "deg) rotateY(" + window.hoverY * rotX + "deg) scale(1.2)";
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
             }
