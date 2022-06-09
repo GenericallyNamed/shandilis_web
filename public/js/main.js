@@ -164,6 +164,7 @@ function window_onMove(event) {
         for (var i = 0; i < cards.length; i++) {
             var card;
             card = cards[i];
+            card.style.transition = "transform 0.05s ease";
             if (cards[i] != elem) {
                 cards[i].classList.add("unhover");
                 cards[i].classList.remove("hover");
@@ -177,7 +178,7 @@ function window_onMove(event) {
                 var x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
                 var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
                 // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
-                card.style.transform = "rotateX(" + 20 * rotY + "deg) rotateY(" + 10 * rotX + "deg) scale(1.2)";
+                card.style.transform = "rotateX(" + -20 * rotY + "deg) rotateY(" + -10 * rotX + "deg) scale(1.2)";
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
             }
