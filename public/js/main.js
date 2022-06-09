@@ -176,7 +176,8 @@ function window_onMove(event) {
                 var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
                 var x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
                 var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
-                card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
+                // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
+                card.style.transform = "rotateX(" + 20 * rotY + "deg) rotateY(" + 10 * rotX + "deg) scale(1.2)";
                 cards[i].classList.add("hover");
                 cards[i].classList.remove("unhover");
             }
