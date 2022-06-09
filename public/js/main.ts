@@ -152,13 +152,13 @@ function window_onMove(event:any) {
         for(var i = 0; i < cards.length; i++) {
             var card: any;
             card = cards[i];
-            card.style.transition = "transform 0.05s ease";
+            card.style.transition = "transform 0.01s ease";
             if(cards[i] != elem) {
                 cards[i].classList.add("unhover");
                 cards[i].classList.remove("hover");
                 card.style.transform = "unset";
             } else {
-                card.style.transition = "transform 0.1s";
+                card.style.transition = "transform 0.01s ease";
                 let mouseX = event.clientX, mouseY = event.clientY;
                 let offX = card.offsetLeft, offY = card.offsetTop;
                 let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;

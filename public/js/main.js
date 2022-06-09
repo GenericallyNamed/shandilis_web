@@ -164,14 +164,14 @@ function window_onMove(event) {
         for (var i = 0; i < cards.length; i++) {
             var card;
             card = cards[i];
-            card.style.transition = "transform 0.05s ease";
+            card.style.transition = "transform 0.01s ease";
             if (cards[i] != elem) {
                 cards[i].classList.add("unhover");
                 cards[i].classList.remove("hover");
                 card.style.transform = "unset";
             }
             else {
-                card.style.transition = "transform 0.1s";
+                card.style.transition = "transform 0.01s ease";
                 var mouseX = event.clientX, mouseY = event.clientY;
                 var offX = card.offsetLeft, offY = card.offsetTop;
                 var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
