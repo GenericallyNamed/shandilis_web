@@ -157,7 +157,7 @@ function window_onMove(event) {
     var elem = document.querySelector("a:hover");
     var chips = document.querySelectorAll("a.chips");
     var cards = document.querySelectorAll("a.cards");
-    window.hoverX = 20;
+    // window.hoverX = 20;
     if (elem === null || elem === void 0 ? void 0 : elem.matches("a.chips")) {
         console.log("hovering over a chip");
         filter.highlight_search(elem.tag);

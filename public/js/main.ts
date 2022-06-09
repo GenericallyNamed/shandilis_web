@@ -151,7 +151,7 @@ function window_onMove(event:any) {
     let elem:any = document.querySelector("a:hover");
     let chips = document.querySelectorAll("a.chips");
     let cards = document.querySelectorAll("a.cards");
-    window.hoverX = 20;
+    // window.hoverX = 20;
     if(elem?.matches("a.chips")) {
         console.log("hovering over a chip");
         filter.highlight_search(elem.tag);
