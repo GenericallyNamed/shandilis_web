@@ -166,12 +166,17 @@ function window_onMove(event) {
         for (var i = 0; i < cards.length; i++) {
             var card;
             card = cards[i];
-            if (cards[i] != elem) {
-                cards[i].classList.add("unhover");
-                cards[i].classList.remove("hover");
+            if (card != elem) {
+                card.classList.add("unhover");
+                card.classList.remove("hover");
                 card.style.transform = "unset";
             }
             else {
+                if (card.classList.contains("unhover")) {
+                    card.classList.remove("unhover");
+                    card.classList.add("hover");
+                    card.style.transition = "0.0s ease";
+                }
                 // card.style.transition = "transform 0.01s ease";
                 var mouseX = event.clientX, mouseY = event.clientY;
                 var offX = card.offsetLeft, offY = card.offsetTop;
@@ -180,8 +185,6 @@ function window_onMove(event) {
                 var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
                 // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
                 card.style.transform = "rotateX(" + window.hoverX * rotY + "deg) rotateY(" + window.hoverY * rotX + "deg) scale(1.2)";
-                cards[i].classList.add("hover");
-                cards[i].classList.remove("unhover");
             }
         }
     }
@@ -189,9 +192,14 @@ function window_onMove(event) {
         for (var i = 0; i < cards.length; i++) {
             var card_1 = cards[i];
             // card.style.transition = "transition 0.01s ease";
-            card_1.classList.add("unhover");
+            if (card_1.classList.contains("hover")) {
+                card_1.classList.remove("hover");
+                card_1.classList.add("unhover");
+                card_1.style.transition = "0.15s ease";
+            }
+            // card.classList.add("unhover");
             card_1.style.transform = "unset";
-            card_1.classList.remove("hover");
+            // card.classList.remove("hover");
             card_1.classList.remove("highlight");
         }
         for (var i = 0; i < chips.length; i++) {

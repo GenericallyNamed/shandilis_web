@@ -160,11 +160,16 @@ function window_onMove(event:any) {
             var card: any;
             card = cards[i];
             
-            if(cards[i] != elem) {
-                cards[i].classList.add("unhover");
-                cards[i].classList.remove("hover");
+            if(card != elem) {
+                card.classList.add("unhover");
+                card.classList.remove("hover");
                 card.style.transform = "unset";
             } else {
+                if(card.classList.contains("unhover")) {
+                    card.classList.remove("unhover");
+                    card.classList.add("hover");
+                    card.style.transition = "0.0s ease";
+                }
                 // card.style.transition = "transform 0.01s ease";
                 let mouseX = event.clientX, mouseY = event.clientY;
                 let offX = card.offsetLeft, offY = card.offsetTop;
@@ -173,8 +178,6 @@ function window_onMove(event:any) {
                 let rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
                 // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
                 card.style.transform = "rotateX(" + window.hoverX * rotY + "deg) rotateY(" + window.hoverY * rotX + "deg) scale(1.2)";
-                cards[i].classList.add("hover");
-                cards[i].classList.remove("unhover");
             }
 
         }
@@ -183,9 +186,14 @@ function window_onMove(event:any) {
         for(var i = 0; i < cards.length; i++) {
             let card:any = cards[i];
             // card.style.transition = "transition 0.01s ease";
-            card.classList.add("unhover");
+            if(card.classList.contains("hover")) {
+                card.classList.remove("hover");
+                card.classList.add("unhover");
+                card.style.transition = "0.15s ease";
+            }
+            // card.classList.add("unhover");
             card.style.transform = "unset";
-            card.classList.remove("hover");
+            // card.classList.remove("hover");
             card.classList.remove("highlight");
 
         }
