@@ -173,7 +173,7 @@ function window_onMove(event) {
                 card.style.transform = "unset";
             }
             else {
-                card.style.transition = "transform 0.15s ease";
+                card.style.transition = "transform 0.01s ease";
                 var mouseX = event.clientX, mouseY = event.clientY;
                 var offX = card.offsetLeft, offY = card.offsetTop;
                 var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;

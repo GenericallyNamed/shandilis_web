@@ -166,7 +166,7 @@ function window_onMove(event:any) {
                 cards[i].classList.remove("hover");
                 card.style.transform = "unset";
             } else {
-                card.style.transition = "transform 0.15s ease";
+                card.style.transition = "transform 0.01s ease";
                 let mouseX = event.clientX, mouseY = event.clientY;
                 let offX = card.offsetLeft, offY = card.offsetTop;
                 let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
