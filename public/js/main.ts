@@ -163,6 +163,8 @@ function window_onMove(event:any) {
             if(card != elem) {
                 card.classList.add("unhover");
                 card.classList.remove("hover");
+                card.hoverEnabled = false;
+                console.log("card hover disabled");
                 card.style.transform = "unset";
             } else {
                 if(card.classList.contains("unhover")) {
@@ -172,18 +174,22 @@ function window_onMove(event:any) {
                         if(card.classList.contains("hover")) {
                             console.log("hover enabled");
                             card.style.transition = "0.0s ease";
+                            card.hoverEnabled = true;
+                            console.log("card hover enabled");
                         }
                     }, 150, card);
                     // card.style.transition = "0.0s ease";
                 }
-                card.style.transition = "transform 0.0s ease";
-                let mouseX = event.clientX, mouseY = event.clientY;
-                let offX = card.offsetLeft, offY = card.offsetTop;
-                let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
-                let x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
-                let rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
-                // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
-                card.style.transform = "rotateX(" + window.hoverX * rotY + "deg) rotateY(" + window.hoverY * rotX + "deg) scale(1.2)";
+                if(card.hoverEnabled) {
+                    card.style.transition = "transform 0.0s ease";
+                    let mouseX = event.clientX, mouseY = event.clientY;
+                    let offX = card.offsetLeft, offY = card.offsetTop;
+                    let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
+                    let x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
+                    let rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
+                    // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
+                    card.style.transform = "rotateX(" + (window.hoverX * rotY) + "deg) rotateY(" + (window.hoverY * rotX + window.hoverY) + "deg) scale(1.2)";
+                }
             }
 
         }
