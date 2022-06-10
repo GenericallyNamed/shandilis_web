@@ -175,9 +175,15 @@ function window_onMove(event) {
                 if (card.classList.contains("unhover")) {
                     card.classList.remove("unhover");
                     card.classList.add("hover");
-                    card.style.transition = "0.0s ease";
+                    setTimeout(function () {
+                        if (card.classList.contains("hover")) {
+                            console.log("hover enabled");
+                            card.style.transition = "0.0s ease";
+                        }
+                    }, 150, card);
+                    // card.style.transition = "0.0s ease";
                 }
-                // card.style.transition = "transform 0.01s ease";
+                card.style.transition = "transform 0.0s ease";
                 var mouseX = event.clientX, mouseY = event.clientY;
                 var offX = card.offsetLeft, offY = card.offsetTop;
                 var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
