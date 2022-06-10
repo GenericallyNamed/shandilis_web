@@ -159,7 +159,6 @@ function window_onMove(event:any) {
         for(var i = 0; i < cards.length; i++) {
             var card: any;
             card = cards[i];
-            card.style.transition = "transform 0.15s ease";
             
             if(cards[i] != elem) {
                 cards[i].classList.add("unhover");
