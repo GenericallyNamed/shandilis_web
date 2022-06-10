@@ -182,7 +182,7 @@ function window_onMove(event:any) {
     else {
         for(var i = 0; i < cards.length; i++) {
             let card:any = cards[i];
-            card.style.transition = "transition 0.15s ease";
+            card.style.transition = "transition 0.01s ease";
             card.classList.add("unhover");
             card.style.transform = "unset";
             card.classList.remove("hover");
