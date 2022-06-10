@@ -169,22 +169,22 @@ function window_onMove(event) {
             if (card != elem) {
                 card.classList.add("unhover");
                 card.classList.remove("hover");
+                card.style.transform = "unset";
                 card.hoverEnabled = false;
                 console.log("card hover disabled");
-                card.style.transform = "unset";
             }
             else {
                 if (card.classList.contains("unhover")) {
                     card.classList.remove("unhover");
                     card.classList.add("hover");
-                    setTimeout(function () {
+                    setTimeout(function (card) {
                         if (card.classList.contains("hover")) {
                             console.log("hover enabled");
                             card.style.transition = "0.0s ease";
                             card.hoverEnabled = true;
                             console.log("card hover enabled");
                         }
-                    }, 150, card);
+                    }, 150, cards[i]);
                     // card.style.transition = "0.0s ease";
                 }
                 if (card.hoverEnabled) {
@@ -195,7 +195,7 @@ function window_onMove(event) {
                     var x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
                     var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
                     // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
-                    card.style.transform = "rotateX(" + (window.hoverX * rotY) + "deg) rotateY(" + (window.hoverY * rotX + window.hoverY) + "deg) scale(1.2)";
+                    card.style.transform = "rotateX(" + (window.hoverX * rotY + window.hoverX) + "deg) rotateY(" + (window.hoverY * rotX) + "deg) scale(1.2)";
                 }
             }
         }
