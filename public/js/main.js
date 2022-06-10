@@ -166,7 +166,7 @@ function window_onMove(event) {
         for (var i = 0; i < cards.length; i++) {
             var card;
             card = cards[i];
-            card.style.transition = "transform 0.01s ease";
+            card.style.transition = "transform 0.15s ease";
             if (cards[i] != elem) {
                 cards[i].classList.add("unhover");
                 cards[i].classList.remove("hover");
