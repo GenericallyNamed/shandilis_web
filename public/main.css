@@ -83,8 +83,12 @@
 
 /* CONTENT INTERACTIONS */
 
+.cards:hover {
+    border: 1px solid #f96f6f !important;
+    box-shadow: 0px 2px 15px 0px #f96f6f;
+}   
 .cards.hover {
-    transform:scale(1.2);
+    /* transform:scale(1.2); */
     border: 1px solid #f96f6f !important;
     box-shadow: 0px 2px 15px 0px #f96f6f;
 }

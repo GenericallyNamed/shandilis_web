@@ -5,6 +5,17 @@ import styles from '../styles/Home.module.css'
 import landing from '../styles/landing.module.css'
 import Script from 'next/script'
 
+console.log("index.tsx");
+
+function card(title:string, thumbnail:string, url:string) {
+  return  <a href={url}>
+            <img className={landing.card_thumbnail} src={thumbnail}></img>
+            <div className={landing.card_title}>
+              {title}
+            </div>
+          </a>;
+}
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -12,7 +23,7 @@ const Home: NextPage = () => {
         <title>shandilis.dev</title>
         <meta name="description" content="alex's personal portfolio" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="main.css"/>
+        {/* <link rel="stylesheet" href="main.css"/> */}
 
       </Head>
       <Script id="set-export">
@@ -24,7 +35,16 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={landing.header}>Alex Shandilis</h1>
         <h2 className={landing.subheader}>maker of things</h2>
-
+        <h3 className={landing.h3}>find me at these places!</h3>
+        <div className={landing.chip_container} id="social_links">
+          <a className={landing.social_links} href="https://github.com/genericallynamed">
+            <object data="icons/github.svg" type="image/svg+xml" style={{height:0.9 + 'em'}}></object>github
+          </a>
+          <a  className={landing.social_links} href="https://www.linkedin.com/in/alex-shandilis-156376210/">
+            <object data="icons/linkedin.svg" type="image/svg+xml"></object>link me on linkedin
+          </a>
+        </div>
+        <h3 className={landing.h3}>or check out my projects below:</h3>
         <div id={"portfolio-container"}>
           <div className={landing.chip_container} id="chiplet-container">
             <a className={landing.chiplets}>
@@ -96,5 +116,6 @@ const Home: NextPage = () => {
     </div>
   )
 }
+
 
 export default Home

@@ -36,8 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+console.log("main.ts");
 window.hoverX = -20;
 window.hoverY = 10;
+console.log("launching application");
 var contentStore = [];
 console.log("stage 1");
 function getContent() {
@@ -91,7 +93,7 @@ function getTags() {
         console.log(contentStore[i]);
         console.log(contentStore[i].tags);
         for (var j = 0; j < contentStore[i].tags.length; j++) {
-            console.log("tag: " + contentStore[i].tags[j]);
+            // console.log("tag: " + contentStore[i].tags[j]);
             tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
     }
@@ -100,7 +102,7 @@ function render() {
     clear();
     var tags = "";
     tagsAggregate === null || tagsAggregate === void 0 ? void 0 : tagsAggregate.forEach(function (key, value) {
-        console.log("key: " + key + ", value: " + value);
+        // console.log("key: " + key + ", value: " + value);
         var elem = document.createElement('a');
         var chippy = document.querySelector("#chiplet-container");
         elem.className = "chips";
@@ -127,7 +129,7 @@ function render() {
         });
         chippy.appendChild(elem);
     });
-    console.log(tags);
+    // console.log(tags);
     var content = "";
     for (var i = 0; i < contentStore.length; i++) {
         var elem = document.createElement('a');
@@ -135,7 +137,7 @@ function render() {
         elem.className = "cards";
         elem.innerHTML = '<img class="card_thumbnail" src="' + contentStore[i].img + '"></img><div class="card_title">' + contentStore[i].name + '</div>';
         elem.tags = contentStore[i].tags;
-        console.log(elem.tags);
+        // console.log(elem.tags);
         cardy.appendChild(elem);
     }
     window.addEventListener("mousemove", function (event) {
@@ -163,56 +165,20 @@ function window_onMove(event) {
         filter.highlight_search(elem.tag);
     }
     else if (elem === null || elem === void 0 ? void 0 : elem.matches("a.cards")) {
-        for (var i = 0; i < cards.length; i++) {
-            var card;
-            card = cards[i];
-            if (card != elem) {
-                card.classList.add("unhover");
-                card.classList.remove("hover");
-                card.style.transform = "unset";
-                card.hoverEnabled = false;
-                console.log("card hover disabled");
-            }
-            else {
-                if (card.classList.contains("unhover")) {
-                    card.classList.remove("unhover");
-                    card.classList.add("hover");
-                    setTimeout(function (card) {
-                        if (card.classList.contains("hover")) {
-                            console.log("hover enabled");
-                            card.style.transition = "0.0s ease";
-                            card.hoverEnabled = true;
-                            console.log("card hover enabled");
-                        }
-                    }, 150, cards[i]);
-                    // card.style.transition = "0.0s ease";
-                }
-                if (card.hoverEnabled) {
-                    card.style.transition = "transform 0.0s ease";
-                    var mouseX = event.clientX, mouseY = event.clientY;
-                    var offX = card.offsetLeft, offY = card.offsetTop;
-                    var cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
-                    var x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
-                    var rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
-                    // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
-                    card.style.transform = "rotateX(" + (window.hoverX * rotY + window.hoverX) + "deg) rotateY(" + (window.hoverY * rotX) + "deg) scale(1.2)";
-                }
-            }
-        }
     }
     else {
         for (var i = 0; i < cards.length; i++) {
-            var card_1 = cards[i];
+            var card = cards[i];
             // card.style.transition = "transition 0.01s ease";
-            if (card_1.classList.contains("hover")) {
-                card_1.classList.remove("hover");
-                card_1.classList.add("unhover");
-                card_1.style.transition = "0.15s ease";
+            if (card.classList.contains("hover")) {
+                card.classList.remove("hover");
+                card.classList.add("unhover");
+                card.style.transition = "0.02s ease";
             }
             // card.classList.add("unhover");
-            card_1.style.transform = "unset";
+            card.style.transform = "unset";
             // card.classList.remove("hover");
-            card_1.classList.remove("highlight");
+            card.classList.remove("highlight");
         }
         for (var i = 0; i < chips.length; i++) {
             chips[i].classList.remove("hover");

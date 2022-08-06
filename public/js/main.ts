@@ -1,14 +1,15 @@
 declare global {
     interface Window { hoverX: any; hoverY: any; }
 }
-// import landing from '../styles/landing.module.css';
-
-import { isJSDocThisTag } from "typescript";
 
 export {}
 
+console.log("main.ts");
+
 window.hoverX = -20;
 window.hoverY = 10;
+
+console.log("launching application");
 
 // types:
 // - general datatype
@@ -78,7 +79,7 @@ function getTags() {
         console.log(contentStore[i]);
         console.log(contentStore[i].tags);
         for(var j = 0; j < contentStore[i].tags.length; j++) {
-            console.log("tag: " + contentStore[i].tags[j]);
+            // console.log("tag: " + contentStore[i].tags[j]);
             tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
     }
@@ -89,7 +90,7 @@ function render() {
     var tags: string = "";
 
     tagsAggregate?.forEach((key: string, value: string) => {
-        console.log("key: " + key + ", value: " + value);
+        // console.log("key: " + key + ", value: " + value);
         let elem: any = document.createElement('a');
         let chippy: any = document.querySelector("#chiplet-container");
         elem.className = "chips";
@@ -115,7 +116,7 @@ function render() {
         });
         chippy.appendChild(elem);
     });
-    console.log(tags);
+    // console.log(tags);
     var content: string = "";
     for(var i = 0; i < contentStore.length; i++) {
         let elem: any = document.createElement('a');
@@ -123,7 +124,7 @@ function render() {
         elem.className = "cards";
         elem.innerHTML = '<img class="card_thumbnail" src="' + contentStore[i].img + '"></img><div class="card_title">' + contentStore[i].name + '</div>';
         elem.tags = contentStore[i].tags;
-        console.log(elem.tags);
+        // console.log(elem.tags);
         cardy.appendChild(elem);
     }
     window.addEventListener("mousemove", function(event) {
@@ -156,52 +157,15 @@ function window_onMove(event:any) {
         console.log("hovering over a chip");
         filter.highlight_search(elem.tag);
     } else if(elem?.matches("a.cards")) {
-        for(var i = 0; i < cards.length; i++) {
-            var card: any;
-            card = cards[i];
-            
-            if(card != elem) {
-                card.classList.add("unhover");
-                card.classList.remove("hover");
-                card.style.transform = "unset";
-                card.hoverEnabled = false;
-                console.log("card hover disabled");
-            } else {
-                if(card.classList.contains("unhover")) {
-                    card.classList.remove("unhover");
-                    card.classList.add("hover");
-                    setTimeout(function(card:any){
-                        if(card.classList.contains("hover")) {
-                            console.log("hover enabled");
-                            card.style.transition = "0.0s ease";
-                            card.hoverEnabled = true;
-                            console.log("card hover enabled");
-                        }
-                    }, 150, cards[i]);
-                    // card.style.transition = "0.0s ease";
-                }
-                if(card.hoverEnabled) {
-                    card.style.transition = "transform 0.0s ease";
-                    let mouseX = event.clientX, mouseY = event.clientY;
-                    let offX = card.offsetLeft, offY = card.offsetTop;
-                    let cardWidth = card.offsetWidth, cardHeight = card.offsetHeight;
-                    let x = mouseX - offX - cardWidth * 0.5, y = mouseY - offY - cardHeight * 0.5;
-                    let rotX = -1 * (x / (cardWidth * 0.5)), rotY = -1 * (y / (cardHeight * 0.5));
-                    // card.style.transform = "rotate3d(" + 45 * rotY + ", " + 45 * rotX + ", 0, 1deg) scale(1.2)";
-                    card.style.transform = "rotateX(" + (window.hoverX * rotY + window.hoverX) + "deg) rotateY(" + (window.hoverY * rotX) + "deg) scale(1.2)";
-                }
-            }
-
-        }
-    }
-    else {
+        
+    } else {
         for(var i = 0; i < cards.length; i++) {
             let card:any = cards[i];
             // card.style.transition = "transition 0.01s ease";
             if(card.classList.contains("hover")) {
                 card.classList.remove("hover");
                 card.classList.add("unhover");
-                card.style.transition = "0.15s ease";
+                card.style.transition = "0.02s ease";
             }
             // card.classList.add("unhover");
             card.style.transform = "unset";
@@ -209,6 +173,8 @@ function window_onMove(event:any) {
             card.classList.remove("highlight");
 
         }
+
+
         for(var i = 0; i < chips.length; i++) {
             chips[i].classList.remove("hover");
         }
@@ -268,3 +234,4 @@ var filter = {
         }
     }
 }
+

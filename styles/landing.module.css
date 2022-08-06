@@ -8,12 +8,21 @@
     margin-top: 0!important;
 }
 
+.h3 {
+    font-weight:400;
+    font-family: 'Libre Franklin';
+}
+
 .chip_container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     max-width: 800px;
+}
+
+.social_links {
+    border: 1px solid #eaeaea;
 }
 
 .chiplets {
