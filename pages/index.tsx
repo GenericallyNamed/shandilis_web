@@ -85,32 +85,7 @@ const Home: NextPage = () => {
               Demos
             </a>
           </div>
-          <div className={landing.content_container} id="card-container">
-            <a className={landing.cards}>
-              <img className={landing.card_thumbnail} src={"city.jpg"}></img>
-              <div className={landing.card_title}>
-                This Website
-              </div>
-            </a>
-            <a className={landing.cards}>
-              <img className={landing.card_thumbnail} src={"city.jpg"}></img>
-              <div className={landing.card_title}>
-                Path Star
-              </div>
-            </a>
-            <a className={landing.cards}>
-              <img className={landing.card_thumbnail} src={"city.jpg"}></img>
-              <div className={landing.card_title}>
-                Missing Sandwich II
-              </div>
-            </a>
-            <a className={landing.cards}>
-              <img className={landing.card_thumbnail} src={"city.jpg"}></img>
-              <div className={landing.card_title}>
-                Annoying Ghosts
-              </div>
-            </a>
-            
+          <div className={landing.content_container} id="card-container">            
           </div>
         </div>
       </main>
