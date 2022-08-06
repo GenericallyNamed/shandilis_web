@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 // console.log("map: code run");
 // type n<T> = T | null;
 // type Node = {
