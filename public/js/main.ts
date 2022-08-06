@@ -36,9 +36,9 @@ type Content = {
 var contentStore: Content[] = [];
 
 console.log("stage 1");
-
 async function getContent() {
     var a = await fetch("/.netlify/functions/content");
+    // var a = await fetch("/json/content.json");
     var b = await a.json();
     for(var i = 0; i < b.length; i++) {
         let content: Content = {
@@ -76,10 +76,7 @@ function getTags() {
         return;
     }
     for(var i = 0; i < contentStore.length; i++) {
-        console.log(contentStore[i]);
-        console.log(contentStore[i].tags);
         for(var j = 0; j < contentStore[i].tags.length; j++) {
-            // console.log("tag: " + contentStore[i].tags[j]);
             tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
     }
@@ -90,7 +87,6 @@ function render() {
     var tags: string = "";
 
     tagsAggregate?.forEach((key: string, value: string) => {
-        // console.log("key: " + key + ", value: " + value);
         let elem: any = document.createElement('a');
         let chippy: any = document.querySelector("#chiplet-container");
         elem.className = "chips";
@@ -116,7 +112,6 @@ function render() {
         });
         chippy.appendChild(elem);
     });
-    // console.log(tags);
     var content: string = "";
     for(var i = 0; i < contentStore.length; i++) {
         let elem: any = document.createElement('a');
@@ -124,7 +119,6 @@ function render() {
         elem.className = "cards";
         elem.innerHTML = '<img class="card_thumbnail" src="' + contentStore[i].img + '"></img><div class="card_title">' + contentStore[i].name + '</div>';
         elem.tags = contentStore[i].tags;
-        // console.log(elem.tags);
         cardy.appendChild(elem);
     }
     window.addEventListener("mousemove", function(event) {

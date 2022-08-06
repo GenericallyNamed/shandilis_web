@@ -47,7 +47,7 @@ function getContent() {
         var a, b, i, content;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("/.netlify/functions/content")];
+                case 0: return [4 /*yield*/, fetch("/json/content.json")];
                 case 1:
                     a = _a.sent();
                     return [4 /*yield*/, a.json()];
@@ -90,10 +90,7 @@ function getTags() {
         return;
     }
     for (var i = 0; i < contentStore.length; i++) {
-        console.log(contentStore[i]);
-        console.log(contentStore[i].tags);
         for (var j = 0; j < contentStore[i].tags.length; j++) {
-            // console.log("tag: " + contentStore[i].tags[j]);
             tagsAggregate.set(contentStore[i].tags[j], contentStore[i].tags[j]);
         }
     }
@@ -102,7 +99,6 @@ function render() {
     clear();
     var tags = "";
     tagsAggregate === null || tagsAggregate === void 0 ? void 0 : tagsAggregate.forEach(function (key, value) {
-        // console.log("key: " + key + ", value: " + value);
         var elem = document.createElement('a');
         var chippy = document.querySelector("#chiplet-container");
         elem.className = "chips";
@@ -129,7 +125,6 @@ function render() {
         });
         chippy.appendChild(elem);
     });
-    // console.log(tags);
     var content = "";
     for (var i = 0; i < contentStore.length; i++) {
         var elem = document.createElement('a');
@@ -137,7 +132,6 @@ function render() {
         elem.className = "cards";
         elem.innerHTML = '<img class="card_thumbnail" src="' + contentStore[i].img + '"></img><div class="card_title">' + contentStore[i].name + '</div>';
         elem.tags = contentStore[i].tags;
-        // console.log(elem.tags);
         cardy.appendChild(elem);
     }
     window.addEventListener("mousemove", function (event) {

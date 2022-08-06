@@ -23,6 +23,9 @@
 
 .social_links {
     border: 1px solid #eaeaea;
+    padding: 0.3rem 0.5rem;
+    margin: 0rem 0.5rem;
+    border-radius:5px;
 }
 
 .chiplets {

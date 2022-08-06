@@ -6,10 +6,11 @@ import landing from '../styles/landing.module.css'
 import Script from 'next/script'
 
 console.log("index.tsx");
+console.log("hello from inside my website");
 
 function card(title:string, thumbnail:string, url:string) {
   return  <a href={url}>
-            <img className={landing.card_thumbnail} src={thumbnail}></img>
+            <Image className={landing.card_thumbnail} src={thumbnail}></Image>
             <div className={landing.card_title}>
               {title}
             </div>
