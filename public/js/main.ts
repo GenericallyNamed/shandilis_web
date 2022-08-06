@@ -37,8 +37,8 @@ var contentStore: Content[] = [];
 
 console.log("stage 1");
 async function getContent() {
-    var a = await fetch("/.netlify/functions/content");
-    // var a = await fetch("/json/content.json");
+    // var a = await fetch("/netlify/functions/content");
+    var a = await fetch("/json/content.json");
     var b = await a.json();
     for(var i = 0; i < b.length; i++) {
         let content: Content = {
