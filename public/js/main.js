@@ -47,7 +47,7 @@ function getContent() {
         var a, b, i, content;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("/json/content.json")];
+                case 0: return [4 /*yield*/, fetch("public/content.json")];
                 case 1:
                     a = _a.sent();
                     return [4 /*yield*/, a.json()];
